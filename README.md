@@ -109,6 +109,22 @@ app) produces the file the group actually reads from.
 To enable: **Settings → Pages → Build and deployment → Source: GitHub
 Actions**.
 
+## Releasing
+
+To cut a release: bump `version` in `package.json`, commit it, then tag and push:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+[`.github/workflows/release.yml`](.github/workflows/release.yml) builds
+the app, zips `dist/`, and publishes a GitHub release for the tag (with
+the zip attached and notes generated from the commits since the last
+release). This is separate from the Pages deploy — a release is a
+versioned, downloadable snapshot of the editor; Pages always serves
+whatever's on `main`.
+
 ## License
 
 [MIT](LICENSE). Third-party dependency licenses are in
